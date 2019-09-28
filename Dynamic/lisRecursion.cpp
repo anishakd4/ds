@@ -1,0 +1,35 @@
+#include<algorithm>
+#include<iostream>
+
+using namespace std;
+
+int lis(int arr[], int n, int *max_ref){
+    if(n == 1){
+        return 1;
+    }
+
+    int res, max_ending_here = 1;
+
+    for(int i=1; i<n; i++){
+        res = lis(arr, i, max_ref);
+        if(arr[i-1] < arr[n-1] && res + 1 > max_ending_here){
+            max_ending_here = res + 1;
+        }
+    }
+
+    if (*max_ref < max_ending_here){
+        *max_ref = max_ending_here; 
+    }
+    return max_ending_here;
+}
+
+int main(){
+    int max = 1;
+    int arr[] = { 10, 22, 9, 33, 21, 50, 41, 60 };
+    int n = sizeof(arr)/sizeof(arr[0]); 
+    cout<<n<<endl;
+    int result = lis(arr, n, &max);
+
+    cout<<result<<endl;
+    return 0;
+}
