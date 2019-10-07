@@ -13,6 +13,7 @@
         "utility": "cpp",
         "unordered_map": "cpp",
         "map": "cpp",
-        "numeric": "cpp"
+        "numeric": "cpp",
+        "unordered_set": "cpp"
     }
 }
