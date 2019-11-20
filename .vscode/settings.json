@@ -25,6 +25,8 @@
         "iterator": "cpp",
         "string": "cpp",
         "string_view": "cpp",
-        "__config": "cpp"
+        "__config": "cpp",
+        "__tree": "cpp",
+        "random": "cpp"
     }
 }
