@@ -27,6 +27,11 @@
         "string_view": "cpp",
         "__config": "cpp",
         "__tree": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "ios": "cpp",
+        "__locale": "cpp",
+        "__string": "cpp",
+        "regex": "cpp",
+        "*.tcc": "cpp"
     }
 }
