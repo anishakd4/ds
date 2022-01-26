@@ -17,7 +17,6 @@ int power(int x, int n)
     {
         return 1;
     }
-
     return (x * power(x, n - 1));
 }
 
