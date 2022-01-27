@@ -11,6 +11,15 @@
 #include <unordered_map>
 using namespace std;
 
+int sum2(int input[], int n)
+{
+    if (n == 0)
+    {
+        return 0;
+    }
+    return (input[0] + sum2(input + 1, n - 1));
+}
+
 int sum(int input[], int n)
 {
     if (n == 1)
@@ -32,5 +41,6 @@ int main()
     }
 
     cout << sum(input, n) << endl;
+    cout << sum2(input, n) << endl;
     return 0;
 }
