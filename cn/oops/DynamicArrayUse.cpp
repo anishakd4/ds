@@ -24,8 +24,11 @@ int main()
 
     d1.print();
 
-    DynamicArray d2(d1); // copy constructor
-    DynamicArray d3;     // copy assignment operator
+    DynamicArray d2(d1); // copy constructor does shallow copying
+    DynamicArray d3;     // copy assignment operator does shallow copying
+
+    // with shallow copying no issues with nextIndex and capacity, with data there will be issues as if d1.data is at
+    // 700 location then d2. data and d3.data will also be pointing to the same data array location
     d3 = d1;
 
     cout << "Before d1 changes" << endl;

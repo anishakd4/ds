@@ -13,6 +13,34 @@ public:
         capacity = 5;
     }
 
+    // custom copy constructor
+    DynamicArray(DynamicArray const &d)
+    {
+        // this->data = d.data; // shallow copy
+
+        // deep copy
+        this->data = new int[d.capacity];
+        for (int i = 0; i < d.nextIndex; i++)
+        {
+            this->data[i] = d.data[i];
+        }
+
+        this->nextIndex = d.nextIndex;
+        this->capacity = d.capacity;
+    }
+
+    void operator=(DynamicArray const &d)
+    {
+        this->data = new int[d.capacity];
+        for (int i = 0; i < d.nextIndex; i++)
+        {
+            this->data[i] = d.data[i];
+        }
+
+        this->nextIndex = d.nextIndex;
+        this->capacity = d.capacity;
+    }
+
     void add(int element)
     {
         if (nextIndex == capacity)
