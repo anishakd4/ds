@@ -54,7 +54,7 @@ public:
             newDegCoeff[degree] = coefficient;
             delete[] degCoeff;
             degCoeff = newDegCoeff;
-            capacity = degree + 1;
+            capacity = degree;
         }
     }
 
@@ -65,7 +65,7 @@ public:
         Polynomial p1(cap);
         for (int i = 0; i <= cap; i++)
         {
-            if (i < capacity && i < p.capacity)
+            if (i <= capacity && i <= p.capacity)
             {
                 p1.degCoeff[i] = p.degCoeff[i] + degCoeff[i];
             }
@@ -88,7 +88,7 @@ public:
         Polynomial p1(cap);
         for (int i = 0; i <= cap; i++)
         {
-            if (i < capacity && i < p.capacity)
+            if (i <= capacity && i <= p.capacity)
             {
                 p1.degCoeff[i] = degCoeff[i] - p.degCoeff[i];
             }
