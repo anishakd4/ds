@@ -110,6 +110,76 @@ Node *takeInput()
 
 */
 
+/*
+T(n) =T(n-1) + (n-1)
+T(n-1) =T(n-2) + (n-1)
+T(n-2) =T(n-3) + (n-2)
+T(n-3) =T(n-4) + (n-3)
+................................
+=
+T(n) = (n-1) + (n-2) + (n-3)+....1
+O(n^2) time complexity
+*/
+Node *reverseLL(Node *head)
+{
+    if (head == NULL || head->next == NULL)
+    {
+        return head;
+    }
+
+    Node *smallAns = reverseLL(head->next);
+
+    Node *temp = smallAns;
+    while (temp->next != NULL)
+    {
+        temp = temp->next;
+    }
+    temp->next = head;
+    head->next = NULL;
+    return smallAns;
+}
+
+class Pair
+{
+public:
+    Node *head;
+    Node *tail;
+};
+
+// Double node approach to reverse Linked list
+/*
+T(n) = T(n-1) + k;
+T(n-1) = T(n-2) + k;
+T(n-2) = T(n-3) + k;
+..............
+=
+T(n) = nk
+O(n)
+*/
+Pair reverseLL_2(Node *head)
+{
+    if (head == NULL || head->next == NULL)
+    {
+        Pair ans;
+        ans.head = head;
+        ans.tail = head;
+        return ans;
+    }
+
+    Pair smallAns = reverseLL_2(head->next);
+    smallAns.tail->next = head;
+    head->next = NULL;
+    Pair ans;
+    ans.head = smallAns.head;
+    ans.tail = head;
+    return ans;
+}
+
+Node *reverseLL_better(Node *head)
+{
+    return reverseLL_2(head).head;
+}
+
 Node *insertNode(Node *head, int i, int data)
 {
     Node *newNode = new Node(data);
@@ -197,6 +267,15 @@ int main()
     print(head4);
 
     printMiddle(head4);
+    print(head4);
+
+    cout << "reverse linked list" << endl;
+    Node *rev1 = reverseLL(head4);
+    print(head4);
+    print(rev1);
+
+    rev1 = reverseLL_better(rev1);
+    print(rev1);
 
     return 0;
 }
