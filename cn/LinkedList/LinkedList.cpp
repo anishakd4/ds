@@ -135,6 +135,22 @@ Node *insertNode(Node *head, int i, int data)
     return head;
 }
 
+void printMiddle(Node *head)
+{
+    Node *slow_ptr = head;
+    Node *fast_ptr = head;
+
+    if (head != NULL)
+    {
+        while (fast_ptr != NULL && fast_ptr->next != NULL)
+        {
+            fast_ptr = fast_ptr->next->next;
+            slow_ptr = slow_ptr->next;
+        }
+        cout << "The middle element is [" << slow_ptr->data << "]" << endl;
+    }
+}
+
 void print(Node *head)
 {
     while (head != NULL)
@@ -179,6 +195,8 @@ int main()
 
     head4 = insertNode(head4, 0, 99);
     print(head4);
+
+    printMiddle(head4);
 
     return 0;
 }
