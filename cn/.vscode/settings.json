@@ -18,6 +18,7 @@
 		"utility": "cpp",
 		"stack": "cpp",
 		"deque": "cpp",
-		"__config": "cpp"
+		"__config": "cpp",
+		"queue": "cpp"
 	}
 }
