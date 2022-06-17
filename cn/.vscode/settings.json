@@ -15,6 +15,9 @@
 		"unordered_map": "cpp",
 		"vector": "cpp",
 		"iterator": "cpp",
-		"utility": "cpp"
+		"utility": "cpp",
+		"stack": "cpp",
+		"deque": "cpp",
+		"__config": "cpp"
 	}
 }

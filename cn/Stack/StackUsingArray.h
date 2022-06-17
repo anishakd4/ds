@@ -152,3 +152,10 @@ public:
         return data[nextIndex - 1];
     }
 };
+
+// these .h files are header files. These are like normal files. They are library files which we can include
+// anywhere and use it.
+// we can't have main in .h file. .cpp files can have main
+
+//#include "StackUsingArray.h" this line means all the code from the mentioned file will copied here in the place
+// of the include line
