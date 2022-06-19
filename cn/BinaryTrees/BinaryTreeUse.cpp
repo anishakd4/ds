@@ -179,25 +179,25 @@ BinaryTreeNode<int> *buildTree(int *in, int *pre, int size)
 // 1 2 3 4 5 6 7 -1 -1 -1 -1 8 9 -1 -1 -1 -1 -1 -1
 int main()
 {
-    // BinaryTreeNode<int> *root = new BinaryTreeNode<int>(1);
-    // BinaryTreeNode<int> *node1 = new BinaryTreeNode<int>(2);
-    // BinaryTreeNode<int> *node2 = new BinaryTreeNode<int>(3);
+    BinaryTreeNode<int> *root = new BinaryTreeNode<int>(1);
+    BinaryTreeNode<int> *node1 = new BinaryTreeNode<int>(2);
+    BinaryTreeNode<int> *node2 = new BinaryTreeNode<int>(3);
 
-    // root->left = node1;
-    // root->right = node2;
-    // printTree(root);
-    // delete root;
+    root->left = node1;
+    root->right = node2;
+    printTree(root);
+    delete root;
 
-    // cout << "--------------------------------" << endl;
-    // BinaryTreeNode<int> *root2 = takeInputLevelWise();
-    // printTree(root2);
-    // cout << "NumNodes : " << numNodes(root2) << endl;
+    cout << "--------------------------------" << endl;
+    BinaryTreeNode<int> *root2 = takeInputLevelWise();
+    printTree(root2);
+    cout << "NumNodes : " << numNodes(root2) << endl;
 
-    // cout << "------------INORDER-------------" << endl;
-    // inOrder(root2);
-    // cout << endl;
-    // cout << "------------INORDER-------------" << endl;
-    // delete root2;
+    cout << "------------INORDER-------------" << endl;
+    inOrder(root2);
+    cout << endl;
+    cout << "------------INORDER-------------" << endl;
+    delete root2;
 
     cout << "--------------------------------Tree construct--------------------------------" << endl;
     int in[] = {4, 2, 5, 1, 8, 6, 9, 3, 7};
