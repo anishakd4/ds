@@ -176,37 +176,120 @@ BinaryTreeNode<int> *buildTree(int *in, int *pre, int size)
     return buildTreeUtil(in, pre, 0, size - 1, 0, size - 1);
 }
 
+/*          *
+          /   \
+         *     *
+        / \   / \
+       *   * *   *
+
+    height = log(n)
+    T(n)= k(n) + 2T(n/2)  =  O(nlogn)
+
+
+        *
+         \
+          *
+           \
+            *
+             \
+              *
+               \
+                *
+    height = n;
+    T(n)= k(n) + T(n-1)  =  O(n^2)
+
+    conclusion: time complexity= n* height
+
+*/
+
+int height(BinaryTreeNode<int> *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+    return 1 + max(height(root->left), height(root->right));
+}
+
+int diameter(BinaryTreeNode<int> *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+
+    int option1 = height(root->left) + height(root->right);
+    int option2 = diameter(root->left);
+    int option3 = diameter(root->right);
+
+    return max(option1, max(option2, option3));
+}
+
+pair<int, int> heightDiameter(BinaryTreeNode<int> *root)
+{
+    if (root == NULL)
+    {
+        pair<int, int> p;
+        p.first = 0;
+        p.second = 0;
+        return p;
+    }
+
+    pair<int, int> leftAns = heightDiameter(root->left);
+    pair<int, int> rightAns = heightDiameter(root->right);
+
+    int leftDiameter = leftAns.second;
+    int leftHeight = leftAns.first;
+    int rightDiameter = rightAns.second;
+    int rightHeight = rightAns.first;
+
+    int height = 1 + max(leftHeight, rightHeight);
+    int diameter = max(leftHeight + rightHeight, max(leftDiameter, rightDiameter));
+
+    pair<int, int> p;
+    p.first = height;
+    p.second = diameter;
+
+    return p;
+}
+
 // 1 2 3 4 5 6 7 -1 -1 -1 -1 8 9 -1 -1 -1 -1 -1 -1
 int main()
 {
-    BinaryTreeNode<int> *root = new BinaryTreeNode<int>(1);
-    BinaryTreeNode<int> *node1 = new BinaryTreeNode<int>(2);
-    BinaryTreeNode<int> *node2 = new BinaryTreeNode<int>(3);
+    // BinaryTreeNode<int> *root = new BinaryTreeNode<int>(1);
+    // BinaryTreeNode<int> *node1 = new BinaryTreeNode<int>(2);
+    // BinaryTreeNode<int> *node2 = new BinaryTreeNode<int>(3);
 
-    root->left = node1;
-    root->right = node2;
-    printTree(root);
-    delete root;
+    // root->left = node1;
+    // root->right = node2;
+    // printTree(root);
+    // delete root;
 
-    cout << "--------------------------------" << endl;
-    BinaryTreeNode<int> *root2 = takeInputLevelWise();
-    printTree(root2);
-    cout << "NumNodes : " << numNodes(root2) << endl;
+    // cout << "--------------------------------" << endl;
+    // BinaryTreeNode<int> *root2 = takeInputLevelWise();
+    // printTree(root2);
+    // cout << "NumNodes : " << numNodes(root2) << endl;
 
-    cout << "------------INORDER-------------" << endl;
-    inOrder(root2);
-    cout << endl;
-    cout << "------------INORDER-------------" << endl;
-    delete root2;
+    // cout << "------------INORDER-------------" << endl;
+    // inOrder(root2);
+    // cout << endl;
+    // cout << "------------INORDER-------------" << endl;
+    // delete root2;
 
-    cout << "--------------------------------Tree construct--------------------------------" << endl;
-    int in[] = {4, 2, 5, 1, 8, 6, 9, 3, 7};
-    int pre[] = {1, 2, 4, 5, 3, 6, 8, 9, 7};
-    BinaryTreeNode<int> *root3 = buildTree(in, pre, 9);
-    printTree(root3);
-    delete root3;
-    cout << endl;
-    cout << "--------------------------------Tree construct--------------------------------" << endl;
+    // cout << "--------------------------------Tree construct--------------------------------" << endl;
+    // int in[] = {4, 2, 5, 1, 8, 6, 9, 3, 7};
+    // int pre[] = {1, 2, 4, 5, 3, 6, 8, 9, 7};
+    // BinaryTreeNode<int> *root3 = buildTree(in, pre, 9);
+    // printTree(root3);
+    // delete root3;
+    // cout << endl;
+    // cout << "--------------------------------Tree construct--------------------------------" << endl;
 
+    BinaryTreeNode<int> *root4 = takeInputLevelWise();
+    printTree(root4);
+    cout << "NUM: " << numNodes(root4) << endl;
+    pair<int, int> p = heightDiameter(root4);
+    cout << "height: " << p.first << endl;
+    cout << "Diameter: " << p.second << endl;
     return 0;
 }
