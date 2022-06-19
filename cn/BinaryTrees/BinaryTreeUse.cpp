@@ -116,28 +116,97 @@ void inOrder(BinaryTreeNode<int> *root)
     inOrder(root->right);
 }
 
+BinaryTreeNode<int> *buildTreeUtil(int *in, int *pre, int inS, int inE, int preS, int preE)
+{
+    cout << endl;
+    cout << "****************************************************************" << endl;
+    cout << inS << "  " << inE << "  " << preS << "  " << preE << endl;
+
+    if (inS > inE)
+    {
+        return NULL;
+    }
+
+    int rootData = pre[preS];
+
+    cout << "root->data : " << rootData << endl;
+    cout << "---INORDER---" << endl;
+    for (int i = inS; i <= inE; i++)
+    {
+        cout << in[i] << " ";
+    }
+    cout << endl;
+    cout << "---POSTORDER---" << endl;
+    for (int i = preS; i <= preE; i++)
+    {
+        cout << pre[i] << " ";
+    }
+    cout << endl;
+    cout << "****************************************************************" << endl;
+    cout << endl;
+
+    int rootIndex = -1;
+    for (int i = inS; i <= inE; i++)
+    {
+        if (in[i] == rootData)
+        {
+            rootIndex = i;
+            break;
+        }
+    }
+
+    int lInS = inS;
+    int lInE = rootIndex - 1;
+    int lPreS = preS + 1;
+    int lPreE = lInE - lInS + lPreS;
+    int rInS = rootIndex + 1;
+    int rInE = inE;
+    int rPreS = lPreE + 1;
+    int rPreE = preE;
+
+    BinaryTreeNode<int> *root = new BinaryTreeNode<int>(rootData);
+    root->left = buildTreeUtil(in, pre, lInS, lInE, lPreS, lPreE);
+    root->right = buildTreeUtil(in, pre, rInS, rInE, rPreS, rPreE);
+
+    return root;
+}
+
+BinaryTreeNode<int> *buildTree(int *in, int *pre, int size)
+{
+    return buildTreeUtil(in, pre, 0, size - 1, 0, size - 1);
+}
+
 // 1 2 3 4 5 6 7 -1 -1 -1 -1 8 9 -1 -1 -1 -1 -1 -1
 int main()
 {
-    BinaryTreeNode<int> *root = new BinaryTreeNode<int>(1);
-    BinaryTreeNode<int> *node1 = new BinaryTreeNode<int>(2);
-    BinaryTreeNode<int> *node2 = new BinaryTreeNode<int>(3);
+    // BinaryTreeNode<int> *root = new BinaryTreeNode<int>(1);
+    // BinaryTreeNode<int> *node1 = new BinaryTreeNode<int>(2);
+    // BinaryTreeNode<int> *node2 = new BinaryTreeNode<int>(3);
 
-    root->left = node1;
-    root->right = node2;
-    printTree(root);
-    delete root;
+    // root->left = node1;
+    // root->right = node2;
+    // printTree(root);
+    // delete root;
 
-    cout << "--------------------------------" << endl;
-    BinaryTreeNode<int> *root2 = takeInputLevelWise();
-    printTree(root2);
-    cout << "NumNodes : " << numNodes(root2) << endl;
+    // cout << "--------------------------------" << endl;
+    // BinaryTreeNode<int> *root2 = takeInputLevelWise();
+    // printTree(root2);
+    // cout << "NumNodes : " << numNodes(root2) << endl;
 
-    cout << "------------INORDER-------------" << endl;
-    inOrder(root2);
+    // cout << "------------INORDER-------------" << endl;
+    // inOrder(root2);
+    // cout << endl;
+    // cout << "------------INORDER-------------" << endl;
+    // delete root2;
+
+    cout << "--------------------------------Tree construct--------------------------------" << endl;
+    int in[] = {4, 2, 5, 1, 8, 6, 9, 3, 7};
+    int pre[] = {1, 2, 4, 5, 3, 6, 8, 9, 7};
+    BinaryTreeNode<int> *root3 = buildTree(in, pre, 9);
+    printTree(root3);
+    delete root3;
     cout << endl;
-    cout << "------------INORDER-------------" << endl;
-    delete root2;
+    cout << "--------------------------------Tree construct--------------------------------" << endl;
 
     return 0;
 }
