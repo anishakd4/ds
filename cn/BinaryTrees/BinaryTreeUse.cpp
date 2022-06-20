@@ -12,6 +12,7 @@
 #include <queue>
 using namespace std;
 #include "BinaryTreeNode.h"
+#include "BinarySearchTree.h"
 
 void printTree(BinaryTreeNode<int> *root)
 {
@@ -176,6 +177,15 @@ BinaryTreeNode<int> *buildTree(int *in, int *pre, int size)
     return buildTreeUtil(in, pre, 0, size - 1, 0, size - 1);
 }
 
+int height(BinaryTreeNode<int> *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+    return 1 + max(height(root->left), height(root->right));
+}
+
 /*          *
           /   \
          *     *
@@ -196,21 +206,12 @@ BinaryTreeNode<int> *buildTree(int *in, int *pre, int size)
                \
                 *
     height = n;
-    T(n)= k(n) + T(n-1)  =  O(n^2)
+    T(n)= k(n) + T(n-1)  =  O(n^2) = O(n * n) = O(n *height)
 
-    conclusion: time complexity= n* height
-
+    conclusion: time complexity= n*height
+    So if a bad tree with long height is given then higher time complexity and if a good tree with smallert height
+    is given then better time complexity
 */
-
-int height(BinaryTreeNode<int> *root)
-{
-    if (root == NULL)
-    {
-        return 0;
-    }
-    return 1 + max(height(root->left), height(root->right));
-}
-
 int diameter(BinaryTreeNode<int> *root)
 {
     if (root == NULL)
@@ -225,6 +226,8 @@ int diameter(BinaryTreeNode<int> *root)
     return max(option1, max(option2, option3));
 }
 
+// Time complexity: O(n)
+//(n) = k(n)
 pair<int, int> heightDiameter(BinaryTreeNode<int> *root)
 {
     if (root == NULL)
@@ -253,7 +256,158 @@ pair<int, int> heightDiameter(BinaryTreeNode<int> *root)
     return p;
 }
 
+int maximum(BinaryTreeNode<int> *root)
+{
+    if (root == NULL)
+    {
+        return INT_MIN;
+    }
+
+    return max(root->data, max(maximum(root->left), maximum(root->right)));
+}
+
+int minimum(BinaryTreeNode<int> *root)
+{
+    if (root == NULL)
+    {
+        return INT_MAX;
+    }
+
+    return min(root->data, min(minimum(root->left), minimum(root->right)));
+}
+
+/*          *
+          /   \
+         *     *
+        / \   / \
+       *   * *   *
+
+    height = log(n)
+    T(n)= k(n) + 2T(n/2)  =  O(nlogn)
+
+
+        *
+         \
+          *
+           \
+            *
+             \
+              *
+               \
+                *
+    height = n;
+    T(n)= k(n) + T(n-1)  =  O(n^2) = O(n * n) = O(n *height)
+
+    conclusion: time complexity= n*height
+    So if a bad tree with long height is given then higher time complexity and if a good tree with smallert height
+    is given then better time complexity
+*/
+bool isBST(BinaryTreeNode<int> *root)
+{
+    if (root == NULL)
+    {
+        return true;
+    }
+
+    int leftMax = maximum(root->left);
+    int rightMin = minimum(root->right);
+
+    bool output = (root->data > leftMax) && (root->data <= rightMin) && isBST(root->left) && isBST(root->right);
+
+    return output;
+}
+
+class IsBSTReturn
+{
+public:
+    bool isBST;
+    int min;
+    int max;
+};
+
+/*
+T(n) = 2*T(n/2)+k
+going to each node and doing constant operations
+O(n)
+*/
+IsBSTReturn isBST2(BinaryTreeNode<int> *root)
+{
+    if (root == NULL)
+    {
+        IsBSTReturn output;
+        output.min = INT_MAX;
+        output.max = INT_MIN;
+        output.isBST = true;
+        return output;
+    }
+    IsBSTReturn leftOutput = isBST2(root->left);
+    IsBSTReturn rightOutput = isBST2(root->right);
+
+    int minimum = min(root->data, min(leftOutput.min, rightOutput.min));
+    int maximum = max(root->data, max(leftOutput.max, rightOutput.max));
+    bool isBSTFinal = (root->data > leftOutput.max && root->data <= rightOutput.min && leftOutput.isBST && rightOutput.isBST);
+
+    IsBSTReturn output;
+    output.min = minimum;
+    output.max = maximum;
+    output.isBST = isBSTFinal;
+    return output;
+}
+
+bool isBST3(BinaryTreeNode<int> *root, int min, int max)
+{
+    if (root == NULL)
+    {
+        return true;
+    }
+
+    if (root->data < min || root->data > max)
+    {
+        return false;
+    }
+
+    bool isLeftOk = isBST3(root->left, min, root->data - 1);
+    bool isRightOk = isBST3(root->right, root->data, max);
+
+    return isLeftOk && isRightOk;
+}
+
+vector<int> *getRootToNodePath(BinaryTreeNode<int> *root, int data)
+{
+    if (root == NULL)
+    {
+        return NULL;
+    }
+
+    if (root->data == data)
+    {
+        vector<int> *output = new vector<int>();
+        output->push_back(root->data);
+        return output;
+    }
+
+    vector<int> *leftOutput = getRootToNodePath(root->left, data);
+
+    if (leftOutput != NULL)
+    {
+        leftOutput->push_back(root->data);
+        return leftOutput;
+    }
+
+    vector<int> *rightOutput = getRootToNodePath(root->right, data);
+
+    if (rightOutput != NULL)
+    {
+        rightOutput->push_back(root->data);
+        return rightOutput;
+    }
+
+    return NULL;
+}
+
 // 1 2 3 4 5 6 7 -1 -1 -1 -1 8 9 -1 -1 -1 -1 -1 -1
+// 4 2 6 1 3 5 7 -1 -1 -1 -1 -1 -1 -1 -1
+// 4 2 6 1 30 5 7 -1 -1 -1 -1 -1 -1 -1 -1
 int main()
 {
     // BinaryTreeNode<int> *root = new BinaryTreeNode<int>(1);
@@ -285,11 +439,36 @@ int main()
     // cout << endl;
     // cout << "--------------------------------Tree construct--------------------------------" << endl;
 
-    BinaryTreeNode<int> *root4 = takeInputLevelWise();
-    printTree(root4);
-    cout << "NUM: " << numNodes(root4) << endl;
-    pair<int, int> p = heightDiameter(root4);
-    cout << "height: " << p.first << endl;
-    cout << "Diameter: " << p.second << endl;
+    // BinaryTreeNode<int> *root4 = takeInputLevelWise();
+    // printTree(root4);
+    // cout << "NUM: " << numNodes(root4) << endl;
+    // pair<int, int> p = heightDiameter(root4);
+    // cout << "height: " << p.first << endl;
+    // cout << "Diameter: " << p.second << endl;
+
+    // BinaryTreeNode<int> *root4 = takeInputLevelWise();
+    // printTree(root4);
+    // cout << "isBST: " << isBST(root4) << endl;
+    // cout << "isBST3: " << isBST3(root4, INT_MIN, INT_MAX) << endl;
+
+    // BinaryTreeNode<int> *root5 = takeInputLevelWise();
+    // vector<int> *output = getRootToNodePath(root5, 8);
+    // for (int i = 0; i < output->size(); i++)
+    // {
+    //     cout << output->at(i) << " ";
+    // }
+    // delete output;
+    // delete root5;
+
+    BST b;
+    b.insert(10);
+    b.insert(5);
+    b.insert(20);
+    b.insert(7);
+    b.insert(3);
+    b.insert(15);
+    b.deleteData(10);
+    b.printTree();
+
     return 0;
 }
