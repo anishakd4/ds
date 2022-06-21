@@ -472,3 +472,12 @@ int main()
 
     return 0;
 }
+
+/*
+for deletion:
+d+d'+d' <2h O(h)
+
+For balanced search tree insertion deletion search is of the O(height)
+for balanced search tree it will be always of the O(log(n)) as the height is around log(n)
+height is log(n)
+*/
