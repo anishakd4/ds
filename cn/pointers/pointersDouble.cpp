@@ -7,7 +7,7 @@
 #include <cmath>
 #include <map>
 #include <climits>
-//climits for INT_MIN
+// climits for INT_MIN
 #include <unordered_map>
 using namespace std;
 

@@ -7,7 +7,7 @@
 #include <cmath>
 #include <map>
 #include <climits>
-//climits for INT_MIN
+// climits for INT_MIN
 #include <unordered_map>
 using namespace std;
 int main()
@@ -24,7 +24,7 @@ int main()
 
     cout << "arr: " << arr << endl;
     cout << "&arr[0]: " << &arr[0] << endl;
-    //So arr can be treated almost exactly like pointer
+    // So arr can be treated almost exactly like pointer
 
     cout << "*arr: " << (*arr) << endl;
     arr[0] = 5;
@@ -32,7 +32,7 @@ int main()
     cout << "*arr: " << (*arr) << endl;
     cout << "*(arr+1): " << (*(arr + 1)) << endl;
     /*
-    arr[i] -> *(arr+i) 
+    arr[i] -> *(arr+i)
 
     i[arr] -> *(i+arr) this will also work
 
@@ -69,12 +69,13 @@ int main()
     Reason: for storing pointers another storage is created but not arrays(arrays are just entered in the symbol table).
     */
 
-    //arr = arr + 3; array can not be reassigned. Something entered in a symbol table cannot be changed.
+    // arr = arr + 3; array can not be reassigned. int i=3 this will lets assume stores i at 700 then we can't ask system to store it at 730.
+    // Something entered in a symbol table cannot be changed.
 
     int *ptr = arr;
     cout << "ptr " << ptr << endl;
 
-    //You can't do array = pointer but you can do pointer = array
+    // You can't do array = pointer but you can do pointer = array
 
     return 0;
 }

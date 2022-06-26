@@ -16,7 +16,7 @@ int arr[20];
 int n;
 cin>>n;
 int arr[n]
-This works on most of the compilers but we should do this. C++ doesn't guarantee that this will work on systems or compilers.
+This works on most of the compilers but we should not do this. C++ doesn't guarantee that this will work on all systems or compilers.
 we should not create a variable size array. At compile time it should be clear what is the size of the array.
 
 Whenever we allocate memories there are two types of memories stack and heap. Heap is bigger than stack.
@@ -39,7 +39,7 @@ Whenever program starts it start with a stack memory.
 
             int a[20000];
             this is huge but as this is known at compile time so system makes the stack that big so that program
-            can accomodate this bug data in stack.
+            can accommodate this bug data in stack.
 
     Problem comes when we do like this
     int n;
