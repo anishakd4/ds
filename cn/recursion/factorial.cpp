@@ -1,3 +1,20 @@
+/*
+
+Factorial of a number
+
+Write program to print Factorial of a number
+
+Factorial can be calculated using following recursive formula.
+
+    n! = n * (n-1)!
+    n! = 1 if n = 0 or n = 1
+
+Sample Input 1 :
+    6
+
+Sample Output 1 :
+    720
+*/
 #include <iostream>
 #include <iomanip>
 #include <algorithm>

@@ -1,3 +1,29 @@
+/*
+Check if given array is sorted or not recursively.
+
+Input Format :
+    Line 1 : An Integer N i.e. size of array
+    Line 2 : N integers which are elements of the array, separated by spaces
+
+Output Format :
+    Print "Array is sorted" if array is sorted else "Array is not sorted
+
+Constraints :
+    1 <= N <= 10^3
+
+Sample Input 1:
+    2 3 6 8 10
+
+Sample Output 1:
+    Array is sorted
+
+Sample Input 2:
+    2 3 6 8 5 10
+
+Sample Output 2:
+    Array is not sorted
+
+*/
 #include <iostream>
 #include <iomanip>
 #include <algorithm>
@@ -51,8 +77,17 @@ bool is_sorted(int arr[], int size)
 
 int main()
 {
-    int arr[6] = {2, 3, 4, 5, 6, 1};
-    if (is_sorted(arr, 6))
+    int n;
+    cin >> n;
+
+    int *input = new int[n];
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> input[i];
+    }
+
+    if (is_sorted(input, n))
     {
         cout << "Array is sorted" << endl;
     }
@@ -61,14 +96,5 @@ int main()
         cout << "Array is not sorted" << endl;
     }
 
-    int brr[5] = {2, 3, 4, 5, 6};
-    if (is_sorted2(brr, 5))
-    {
-        cout << "Array is sorted" << endl;
-    }
-    else
-    {
-        cout << "Array is not sorted" << endl;
-    }
     return 0;
 }
