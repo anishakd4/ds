@@ -1,3 +1,24 @@
+/*
+Given an input string S and two characters c1 and c2, you need to replace every occurrence of character c1 with character c2 in the given string.
+Do this recursively.
+
+Input Format :
+    Line 1 : Input String S
+    Line 2 : Character c1 and c2 (separated by space)
+
+Output Format :
+    Updated string
+
+Constraints :
+    1 <= Length of String S <= 10^6
+
+Sample Input :
+    abacd
+    a x
+
+Sample Output :
+    xbxcd
+*/
 #include <iostream>
 #include <iomanip>
 #include <algorithm>
@@ -11,17 +32,17 @@
 #include <unordered_map>
 using namespace std;
 
-void charReplace(char str[], char c1, char c2)
+void replaceCharacter(char input[], char c1, char c2)
 {
-    if (str[0] == '\0')
+    if (input[0] == '\0')
     {
         return;
     }
-    if (str[0] == c1)
+    if (input[0] == c1)
     {
-        str[0] = c2;
+        input[0] = c2;
     }
-    charReplace(str + 1, c1, c2);
+    replaceCharacter(input + 1, c1, c2);
 }
 int main()
 {
@@ -29,7 +50,7 @@ int main()
     char c1, c2;
     cin >> input;
     cin >> c1 >> c2;
-    charReplace(input, c1, c2);
+    replaceCharacter(input, c1, c2);
     cout << input << endl;
     return 0;
 }
