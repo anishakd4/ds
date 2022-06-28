@@ -1,7 +1,7 @@
 /*
 Print Numbers
 
-Given is the code to print numbers from 1 to n in increasing order recursively. But it contains few bugs that you need to rectify such that all the test cases pass.
+Write a program to print numbers from 1 to n in increasing order recursively.
 
 Input Format :
     Integer n

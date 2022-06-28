@@ -1,19 +1,33 @@
 /*
-
 Factorial of a number
 
-Write program to print Factorial of a number
+You are given an integer ‘N’. You have to print the value of Factorial of ‘N’. The Factorial of a number ‘N’ is defined as the product of all
+numbers from 1 to ‘N’.
 
-Factorial can be calculated using following recursive formula.
+For Example:
+    Consider if ‘N’ = 4, the Factorial of 4 will be the product of all numbers from 1 to 4, which is 1 * 2 * 3 * 4 = 24. Hence, the answer is 24.
 
-    n! = n * (n-1)!
-    n! = 1 if n = 0 or n = 1
+Input Format:
+    Ane single integer ‘N’
 
-Sample Input 1 :
+Output Format:
+    A single integer representing factorial on `N`
+
+Constraints:
+    1 <= N <= 100
+
+Sample Input 1:
+    4
+
+Sample Output 1:
+    24
+
+Sample Input 2:
     6
 
-Sample Output 1 :
+Sample Output 2:
     720
+
 */
 #include <iostream>
 #include <iomanip>
@@ -36,7 +50,6 @@ causes of segmentation fault
 
 int factorial(int n)
 {
-    cout << "n: " << n << endl;
     if (n == 0)
     {
         return 1;
