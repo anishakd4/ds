@@ -1,3 +1,25 @@
+/*
+Print all the subsequences of a string
+
+Input Format:
+    A string
+
+Output Format:
+    Print all the subsequences of a string in different lines
+
+Input :
+    abc
+
+Output :
+    ""
+    a
+    b
+    c
+    ab
+    bc
+    ac
+    abc
+*/
 #include <iostream>
 #include <iomanip>
 #include <algorithm>

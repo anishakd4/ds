@@ -1,5 +1,5 @@
 /*
-Print all the subsequences of a string
+Return all the subsequences of a string
 
 Input Format:
     A string
@@ -11,7 +11,14 @@ Input :
     abc
 
 Output :
-    "", a, b, c, ab, bc, ac, abc
+    ""
+    a
+    b
+    c
+    ab
+    bc
+    ac
+    abc
 */
 #include <iostream>
 #include <iomanip>
