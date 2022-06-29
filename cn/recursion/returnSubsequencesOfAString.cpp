@@ -1,3 +1,18 @@
+/*
+Print all the subsequences of a string
+
+Input Format:
+    A string
+
+Output Format:
+    Print all the subsequences of a string in different lines
+
+Input :
+    abc
+
+Output :
+    "", a, b, c, ab, bc, ac, abc
+*/
 #include <iostream>
 #include <iomanip>
 #include <algorithm>
@@ -34,10 +49,14 @@ int main()
     abc ["", a, b, c, ab, bc, ac, abc]
 
     pow(2, n) is total number of subsequences.
-    As fo every character we have to make a choice whether to include or not include the character
+
+    As for every character we have to make
+    a choice whether to include or not
+    include the character.
 
     difference between subsequences and substrings:
-    substrings are continuous. For subsequences we can pick any characters
+    substrings are continuous.
+    For subsequences we can pick any characters
     */
 
     string input;
