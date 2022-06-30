@@ -1,3 +1,26 @@
+/*
+Given an array A of size n and an integer K, return all subsets of A which sum to K.
+Subsets are of length varying from 0 to n, that contain elements of the array. But the order of elements should remain same as in the input array.
+
+Note : The order of subsets are not important.
+
+Input format :
+    Line 1 : Integer n, Size of input array
+    Line 2 : Array elements separated by space
+    Line 3 : K
+
+Constraints :
+    1 <= n <= 20
+
+Sample Input :
+    9
+    5 12 3 17 1 18 15 3 17
+    6
+
+Sample Output :
+    3 3
+    5 1
+*/
 #include <iostream>
 #include <iomanip>
 #include <algorithm>
@@ -67,6 +90,7 @@ int subsetSumToK(int arr[], int n, int output[][50], int k)
 
     return size1 + size2;
 }
+
 int main()
 {
     int input[20], length, output[10000][50], k;
