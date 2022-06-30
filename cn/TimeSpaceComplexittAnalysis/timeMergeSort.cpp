@@ -25,9 +25,9 @@ cons of experiment analysis:
         Insertion sort: very fast
         Selection sort: slow
         Insertion sort and selection sort are almost sime time complexity algorithm but some test cases particular algorithms.
-3. If a probelm comes and i figured out 10 solutions. How will I figure out which is better.I have to write code for
+3. If a problem comes and i figured out 10 solutions. How will I figure out which is better.I have to write code for
     each of them.
-4. Time comsuming. Selection sort might take minutes and hours to sort 10 million intergers.
+4. Time consuming. Selection sort might take minutes and hours to sort 10 million intergers.
 
 In general we try to find worst cases as we want to be sure our algorithm performs well in worst cases also.
 
