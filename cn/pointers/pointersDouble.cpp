@@ -63,5 +63,8 @@ int main()
     cout << "*p: " << *p << endl;
     cout << "**dp: " << **dp << endl;
 
+    cout << "------" << endl;
+    increment2(dp);
+
     return 0;
 }

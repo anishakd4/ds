@@ -31,6 +31,16 @@ int main()
     Student s5, s6, s7;
     cout << Student::totalStudents << endl;
 
+    char name[] = "abcd";
+    Student s8(20, name);
+    s8.display();
+
+    name[3] = 'e';
+    Student s9(24, name);
+    s9.display();
+
+    s8.display();
+
     return 0;
 }
 

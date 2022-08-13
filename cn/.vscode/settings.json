@@ -19,6 +19,7 @@
 		"stack": "cpp",
 		"deque": "cpp",
 		"__config": "cpp",
-		"queue": "cpp"
+		"queue": "cpp",
+		"typeinfo": "cpp"
 	}
 }
