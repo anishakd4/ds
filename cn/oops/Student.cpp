@@ -11,11 +11,20 @@ public:
 
     Student()
     {
+        cout << "constructor 1 called" << endl;
         totalStudents++;
+    }
+
+    Student(int age, int rollNumber)
+    {
+        cout << "constructor 2 called" << endl;
+        this->age = age;
+        this->rollNumber = rollNumber;
     }
 
     Student(int age, char *name)
     {
+        cout << "constructor 3 called" << endl;
         totalStudents++;
         this->age = age;
         // shallow copy
@@ -26,9 +35,19 @@ public:
         strcpy(this->name, name);
     }
 
+    ~Student()
+    {
+        cout << "Destructor called" << endl;
+    }
+
     void display()
     {
         cout << name << " " << age << endl;
+    }
+
+    void display2()
+    {
+        cout << age << " " << rollNumber << endl;
     }
 
     int getRollNumber() { return rollNumber; }
