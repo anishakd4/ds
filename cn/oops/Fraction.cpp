@@ -1,7 +1,6 @@
 #include <cmath>
 class Fraction
 {
-
 private:
     int numerator;
     int denominator;
@@ -12,14 +11,33 @@ public:
         this->numerator = numerator;
         this->denominator = denominator;
     }
+
     void print()
     {
-
         cout << this->numerator << " / " << this->denominator << endl;
     }
-    Fraction add(Fraction const &f2)
+
+    void simplify()
     {
 
+        int gcd = 1;
+        int j = min(this->numerator, this->denominator);
+        for (int i = 1; i <= j; i++)
+        {
+
+            if (this->numerator % i == 0 && this->denominator % i == 0)
+            {
+                gcd = i;
+            }
+        }
+        this->numerator = this->numerator / gcd;
+        this->denominator = this->denominator / gcd;
+    }
+
+    // In order to avoid new Fraction f2 creating we are using pass by reference.
+    // By using const reference we agree to the contract then we won't be changing f2.
+    Fraction add(Fraction const &f2)
+    {
         int lcm = this->denominator * f2.denominator;
         int x = lcm / this->denominator;
         int y = lcm / f2.denominator;
@@ -28,6 +46,16 @@ public:
 
         // this->numerator=num;
         // this->denominator=lcm;
+        f3.simplify();
+        return f3;
+    }
+
+    Fraction multiply(Fraction const &f2)
+    {
+
+        int num = this->numerator * f2.numerator;
+        int den = this->denominator * f2.denominator;
+        Fraction f3(num, den);
         f3.simplify();
         return f3;
     }
@@ -48,31 +76,6 @@ public:
         return f3;
     }
 
-    void simplify()
-    {
-
-        int gcd = 1;
-        int j = min(this->numerator, this->denominator);
-        for (int i = 1; i <= j; i++)
-        {
-
-            if (this->numerator % i == 0 && this->denominator % i == 0)
-            {
-                gcd = i;
-            }
-        }
-        this->numerator = this->numerator / gcd;
-        this->denominator = this->denominator / gcd;
-    }
-    Fraction multiply(Fraction const &f2)
-    {
-
-        int num = this->numerator * f2.numerator;
-        int den = this->denominator * f2.denominator;
-        Fraction f3(num, den);
-        f3.simplify();
-        return f3;
-    }
     Fraction operator*(Fraction const &f2) const
     {
 
@@ -82,6 +85,7 @@ public:
         f3.simplify();
         return f3;
     }
+
     bool operator==(Fraction const &f2) const
     {
 

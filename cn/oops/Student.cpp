@@ -4,25 +4,27 @@ public:
     int rollNumber; // by default properties are non-static
     int age;
     char *name;
+    const int x;
+    int &y;
 
     static int totalStudents; // This property ideally should belong to Student class instead of Objects
     // For properties which don't want to be created for each object seperately we declare them as static.
     // As this property belongs to class we need to initialize outside of the class
 
-    Student()
+    Student() : x(1), y(this->age)
     {
         cout << "constructor 1 called" << endl;
         totalStudents++;
     }
 
-    Student(int age, int rollNumber)
+    Student(int age, int rollNumber) : x(1), y(this->age)
     {
         cout << "constructor 2 called" << endl;
         this->age = age;
         this->rollNumber = rollNumber;
     }
 
-    Student(int age, char *name)
+    Student(int age, char *name) : x(1), y(this->age)
     {
         cout << "constructor 3 called" << endl;
         totalStudents++;
@@ -33,6 +35,23 @@ public:
         // deep copy
         this->name = new char[strlen(name) + 1];
         strcpy(this->name, name);
+    }
+
+    // Here to avoid infinite loop we need to pass by reference.
+    Student(Student const &s) : x(1), y(this->age)
+    {
+        this->age = s.age;
+        // this->name = s.name; shallow copy
+        this->rollNumber = s.rollNumber;
+        this->name = new char[strlen(s.name) + 1];
+        strcpy(this->name, s.name);
+    }
+
+    void operator=(const Student &other)
+    {
+        this->age = other.age;
+        this->rollNumber = other.rollNumber;
+        this->name = other.name;
     }
 
     ~Student()

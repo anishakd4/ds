@@ -33,15 +33,26 @@ int main()
     Student s5, s6, s7;
     cout << Student::totalStudents << endl;
 
+    // copy constructor
     char name[] = "abcd";
     Student s8(20, name);
+    cout << "s8: " << endl;
     s8.display();
 
     name[3] = 'e';
     Student s9(24, name);
+    cout << "s9: " << endl;
     s9.display();
-
+    cout << "s8: " << endl;
     s8.display();
+
+    Student s21(s8);
+    cout << "s21: " << endl;
+    s21.display();
+    s8.name[2] = 'm';
+    cout << "s21: " << endl;
+    s21.display();
+    // copy constructor
 
     Student *s10 = new Student();
     (*s10).age = 54;
@@ -54,6 +65,7 @@ int main()
     Student s11(10, 1001);
     cout << "s11: ";
     s11.display2();
+    s11.name = name;
 
     Student s12(s11);
     cout << "s12: ";
@@ -62,6 +74,7 @@ int main()
     Student *s13 = new Student(20, 2001);
     cout << "s13: ";
     s13->display2();
+    s13->name = name;
 
     Student s14(*s13);
     cout << "s14: ";
@@ -89,8 +102,6 @@ int main()
     s19 = *s20;
     cout << "s19: ";
     s19.display2();
-
-    return 0;
 }
 
 // We can declare data members and functions as static members
