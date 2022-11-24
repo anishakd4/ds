@@ -20,18 +20,20 @@ int main()
 
     cout << Student::totalStudents << endl;
     cout << s1.rollNumber << " == " << s1.age << endl;
-    cout << s1.totalStudents << endl; // this is allowed but logically incorrect
+    cout << "s1.totalStudents: " << s1.totalStudents << endl; // this is allowed but logically incorrect
 
     s1.totalStudents = 5;
     Student s2;
     cout << s2.totalStudents << endl;
     cout << s1.totalStudents << endl;
-    cout << Student::totalStudents << endl;
+    cout << "Student::totalStudents: " << Student::totalStudents << endl;
 
     Student s3;
     Student s4;
     Student s5, s6, s7;
     cout << Student::totalStudents << endl;
+
+    cout << "Student::getTotalStudents(): " << Student::getTotalStudents() << endl;
 
     // copy constructor
     char name[] = "abcd";

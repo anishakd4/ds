@@ -77,7 +77,7 @@ public:
     static int getTotalStudents() { return totalStudents; }
 };
 
-int Student ::totalStudents = -2;
+int Student ::totalStudents = 0;
 //:: this is called scope resolution operator
 
 // classes are also called user defined datatypes

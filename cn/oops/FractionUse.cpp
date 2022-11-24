@@ -16,6 +16,10 @@ int main()
   Fraction f1(10, 2);
   Fraction f2(15, 4);
 
+  const Fraction f15(10, 2);
+  cout << f15.getNumerator() << endl;
+  // f15.setDenominator(15); // will throw error
+
   Fraction f3 = f1.add(f2);
   Fraction f4 = f1 + f2;
 

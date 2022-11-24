@@ -12,7 +12,15 @@ public:
         this->denominator = denominator;
     }
 
-    void print()
+    int getNumerator() const { return numerator; }
+
+    int getDenominator() const { return denominator; }
+
+    void setNumerator(int numerator) { this->numerator = numerator; }
+
+    void setDenominator(int denominator) { this->denominator = denominator; }
+
+    void print() const
     {
         cout << this->numerator << " / " << this->denominator << endl;
     }
