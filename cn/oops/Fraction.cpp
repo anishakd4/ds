@@ -96,7 +96,6 @@ public:
 
     bool operator==(Fraction const &f2) const
     {
-
         return (this->numerator == f2.numerator && this->denominator == f2.denominator);
     }
 
@@ -104,7 +103,6 @@ public:
     //  When we return by reference then buffer memory will not be used
     Fraction &operator++()
     {
-
         this->numerator = this->numerator + this->denominator;
         this->simplify();
         return *this;

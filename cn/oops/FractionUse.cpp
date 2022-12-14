@@ -40,15 +40,34 @@ int main()
     cout << "NOT Equal" << endl;
   }
 
+  cout << "F1:" << endl;
   f1.print();
   ++f1;
+  cout << "F1:" << endl;
   f1.print();
-  Fraction f6 = ++f2;
+
+  cout << "F2:" << endl;
   f2.print();
+
+  Fraction f6 = ++f2;
+  cout << "F2:" << endl;
+  f2.print();
+  cout << "F6:" << endl;
   f6.print();
 
   Fraction f7(10, 2);
+  cout << "F7:" << endl;
+  f7.print();
   Fraction f8 = (++(++f7));
+  cout << "F7:" << endl;
+  f7.print();
+  cout << "F8:" << endl;
+  f8.print();
+
+  ++f7;
+  cout << "F7:" << endl;
+  f7.print();
+  cout << "F8:" << endl;
   f8.print();
 
   cout << "POST INCREMENT" << endl;

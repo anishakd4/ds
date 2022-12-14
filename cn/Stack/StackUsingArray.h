@@ -157,5 +157,5 @@ public:
 // anywhere and use it.
 // we can't have main in .h file. .cpp files can have main
 
-//#include "StackUsingArray.h" this line means all the code from the mentioned file will copied here in the place
-// of the include line
+// #include "StackUsingArray.h" this line means all the code from the mentioned file will copied here in the place
+//  of the include line
