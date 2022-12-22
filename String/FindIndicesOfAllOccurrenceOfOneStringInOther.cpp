@@ -33,9 +33,9 @@ void computeLPSArray(string pat, int M, int* lps)
     }
 }
 
-void KMPSearch(char* pat, char* txt){
-    int M = strlen(pat);
-    int N = strlen(txt);
+void KMPSearch(string pat, string txt){
+    int M = pat.length();
+    int N = txt.length();
 
     int lps[M];
 
@@ -67,9 +67,8 @@ void KMPSearch(char* pat, char* txt){
 
 int main()
 {
-    string txt = "ABABDABACDABABCABAB";
-    string pat = "ABABCABAB";
+    string txt = "AABAACAADAABAABA";
+    string pat = "AABA";
     KMPSearch(pat, txt);
-    return 0;
     return 0;
 }
