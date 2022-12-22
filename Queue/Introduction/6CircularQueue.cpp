@@ -1,116 +1,60 @@
 #include<iostream>
-
+#include<iomanip>
+#include<algorithm>
+#include<string>
+#include<cstring>
+#include<vector>
+#include<cmath>
+#include <map>
+#include<climits>
+//climits for INT_MIN
+#include <unordered_map>
 using namespace std;
 
-struct CircularQueue{
-    int front, rear, size, length;
+class Queue{
+    int rear, front;
+    int size;
     int *arr;
-
-    CircularQueue(int s){
+    public:
+    Queue(int s)
+    {
         front = rear = -1;
         size = s;
-        length = 0;
         arr = new int[s];
     }
 
-    void enqueue(int x);
-    int dequeue();
+    void enQueue(int value);
+    int deQueue();
     void displayQueue();
-    bool isFull();
-    bool isEmpty();
 };
 
-bool CircularQueue::isFull(){
-    if(length == size){
-        return true;
-    }
-    return false;
+void Queue::enQueue(int value){
+    
 }
 
-bool CircularQueue::isEmpty(){
-    if(length == 0){
-        return true;
-    }
-    return false;
-}
 
-void CircularQueue::enqueue(int x){
-    if(isFull()){
-        cout<<"Queue is full"<<endl;
-    }else if(front == -1){
-        rear = front = 0;
-        arr[rear] = x;
-        length++;
-    }else{
-        rear = (rear + 1) % (size);
-        arr[rear] = x;
-        length++;
-    }
+int main()
+{   
+    Queue q(5);
 
-    cout<<"enqueue front: "<<front<<" enqueue rear: "<<rear<<endl;
-}
+    q.enQueue(14);
+    q.enQueue(22);
+    q.enQueue(13);
+    q.enQueue(-6);
 
-int CircularQueue::dequeue(){
-    if(isEmpty()){
-        cout<<"Queue is empty"<<endl;
-        return -1;
-    }
+    q.displayQueue();
 
-    int temp = arr[front];
-    if (front == rear) { 
-        front = -1; 
-        rear = -1; 
-    }else{
-        front = (front + 1) % (size);
-    }
-    length--;
+    printf("\nDeleted value = %d", q.deQueue());
+    printf("\nDeleted value = %d", q.deQueue());
 
-    cout<<"dequeue front: "<<front<<" dequeue rear: "<<rear<<endl;
+    q.displayQueue();
 
-    return temp;
-}
+    q.enQueue(9);
+    q.enQueue(20);
+    q.enQueue(5);
 
-void CircularQueue::displayQueue(){
-    if(isEmpty()){
-        cout<<"Queue is empty"<<endl;
-    }else{
-        cout<<"Queue: "<<endl;
-        int i=front;
-        int j=rear;
-        while(i != j){
-            cout<<arr[i]<<" ";
-            i = (i+1) % (size);
-        }
-        cout<<arr[i]<<endl;
-    }
-    cout<<"displayQueue front: "<<front<<" displayQueue rear: "<<rear<<endl;
-}
+    q.displayQueue();
 
-int main(){
-
-    CircularQueue q(5);
-
-    q.enqueue(14); 
-    q.enqueue(22); 
-    q.enqueue(13); 
-    q.enqueue(-6);
-
-    q.displayQueue(); 
-
-    printf("Deleted value = %d\n", q.dequeue()); 
-    printf("Deleted value = %d\n", q.dequeue()); 
-  
-    q.displayQueue(); 
-  
-    q.enqueue(9); 
-    q.enqueue(20); 
-    q.enqueue(5); 
-  
-    q.displayQueue(); 
-  
-    q.enqueue(20);
-
-    q.displayQueue(); 
-
+    q.enQueue(20);
     return 0;
 }
